@@ -1,4 +1,4 @@
-package com.example.mechanic.conserto.model;
+package com.example.mechanic.conserto;
 
 import com.example.mechanic.mecanico.model.Mecanico;
 import com.example.mechanic.veiculo.model.Veiculo;
@@ -41,6 +41,30 @@ public class Conserto {
         if(dados.mecanico() != null) {
             this.mecanico.atualizarInformacoes(dados.mecanico());
         }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getEntrada() {
+        return entrada;
+    }
+
+    public String getSaida() {
+        return saida;
+    }
+
+    public Mecanico getMecanico() {
+        return mecanico;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
     }
 
     public void excluir(){

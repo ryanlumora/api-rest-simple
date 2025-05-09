@@ -1,6 +1,6 @@
 package com.example.mechanic.conserto.database;
 
-import com.example.mechanic.conserto.model.Conserto;
+import com.example.mechanic.conserto.Conserto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

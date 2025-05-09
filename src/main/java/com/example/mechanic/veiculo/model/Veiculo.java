@@ -29,4 +29,24 @@ public class Veiculo {
         this.ano = dados.ano();
         this.cor = dados.cor();
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getAno() {
+        return ano;
+    }
+
+    public String getCor() {
+        return cor;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.mechanic.conserto.model;
+package com.example.mechanic.conserto;
 
 import com.example.mechanic.mecanico.model.DadosMecanico;
 import jakarta.validation.constraints.NotNull;

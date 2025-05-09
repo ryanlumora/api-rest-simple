@@ -1,10 +1,10 @@
 package com.example.mechanic.conserto.controller;
 
-import com.example.mechanic.conserto.model.DadosAtualizacaoConserto;
-import com.example.mechanic.conserto.model.DadosConserto;
-import com.example.mechanic.conserto.model.DadosListagemConserto;
+import com.example.mechanic.conserto.DadosAtualizacaoConserto;
+import com.example.mechanic.conserto.DadosConserto;
+import com.example.mechanic.conserto.DadosListagemConserto;
 import com.example.mechanic.conserto.database.ConsertoRepository;
-import com.example.mechanic.conserto.model.Conserto;
+import com.example.mechanic.conserto.Conserto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

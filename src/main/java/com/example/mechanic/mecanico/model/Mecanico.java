@@ -27,4 +27,16 @@ public class Mecanico {
         if(nome != null) this.nome = dados.nome();
         if(experiencia != null) this.experiencia = dados.experiencia();
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getExperiencia() {
+        return experiencia;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.mecanic.conserto.model;
+package com.example.mechanic.conserto.model;
 
 public record DadosListagemConserto(
         String entrada,

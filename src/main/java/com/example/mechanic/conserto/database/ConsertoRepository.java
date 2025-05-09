@@ -1,6 +1,6 @@
-package com.example.mecanic.conserto.database;
+package com.example.mechanic.conserto.database;
 
-import com.example.mecanic.conserto.model.Conserto;
+import com.example.mechanic.conserto.model.Conserto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ConsertoRepository extends JpaRepository<Conserto, Long> {

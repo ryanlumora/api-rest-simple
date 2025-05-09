@@ -1,6 +1,6 @@
-package com.example.mecanic.veiculo.database;
+package com.example.mechanic.veiculo.database;
 
-import com.example.mecanic.veiculo.model.Veiculo;
+import com.example.mechanic.veiculo.model.Veiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {

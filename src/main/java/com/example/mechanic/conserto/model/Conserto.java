@@ -1,7 +1,7 @@
-package com.example.mecanic.conserto.model;
+package com.example.mechanic.conserto.model;
 
-import com.example.mecanic.mecanico.model.Mecanico;
-import com.example.mecanic.veiculo.model.Veiculo;
+import com.example.mechanic.mecanico.model.Mecanico;
+import com.example.mechanic.veiculo.model.Veiculo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

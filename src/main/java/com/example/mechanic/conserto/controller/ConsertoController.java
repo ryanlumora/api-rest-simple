@@ -1,17 +1,19 @@
-package com.example.mecanic.conserto.controller;
+package com.example.mechanic.conserto.controller;
 
-import com.example.mecanic.conserto.database.ConsertoRepository;
-import com.example.mecanic.conserto.model.Conserto;
-import com.example.mecanic.conserto.model.DadosConserto;
-import com.example.mecanic.conserto.model.DadosListagemConserto;
+import com.example.mechanic.conserto.database.ConsertoRepository;
+import com.example.mechanic.conserto.model.Conserto;
+import com.example.mechanic.conserto.model.DadosConserto;
+import com.example.mechanic.conserto.model.DadosListagemConserto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("conserto")
@@ -34,5 +36,11 @@ public class ConsertoController {
     @GetMapping("algunsdados")
     public List<DadosListagemConserto> listarAlguns(){
         return repository.findAll().stream().map(DadosListagemConserto::new).toList();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Conserto> listarConsertoPorID(@PathVariable Long id) {
+            Optional<Conserto> consertoOptional = repository.findById(id);
+            return consertoOptional.isPresent() ? ResponseEntity.ok(consertoOptional.get()) : ResponseEntity.notFound().build();
     }
 }

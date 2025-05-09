@@ -1,4 +1,4 @@
-package com.example.mecanic.app;
+package com.example.mechanic.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

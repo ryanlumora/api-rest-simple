@@ -1,7 +1,7 @@
-package com.example.mecanic.conserto.model;
+package com.example.mechanic.conserto.model;
 
-import com.example.mecanic.mecanico.model.DadosMecanico;
-import com.example.mecanic.veiculo.model.DadosVeiculo;
+import com.example.mechanic.mecanico.model.DadosMecanico;
+import com.example.mechanic.veiculo.model.DadosVeiculo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

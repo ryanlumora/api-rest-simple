@@ -1,4 +1,4 @@
-package com.example.mecanic.veiculo.model;
+package com.example.mechanic.veiculo.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

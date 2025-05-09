@@ -1,6 +1,7 @@
 package com.example.mechanic.conserto.model;
 
 public record DadosListagemConserto(
+        Long id,
         String entrada,
         String saida,
         String mecanico,
@@ -8,7 +9,8 @@ public record DadosListagemConserto(
         String modelo
 ) {
     public DadosListagemConserto(Conserto conserto){
-        this(conserto.getEntrada(),
+        this(conserto.getId(),
+                conserto.getEntrada(),
                 conserto.getSaida(),
                 conserto.getMecanico().getNome(),
                 conserto.getVeiculo().getMarca(),

@@ -1,9 +1,10 @@
 package com.example.mechanic.conserto.controller;
 
-import com.example.mechanic.conserto.database.ConsertoRepository;
-import com.example.mechanic.conserto.model.Conserto;
+import com.example.mechanic.conserto.model.DadosAtualizacaoConserto;
 import com.example.mechanic.conserto.model.DadosConserto;
 import com.example.mechanic.conserto.model.DadosListagemConserto;
+import com.example.mechanic.conserto.database.ConsertoRepository;
+import com.example.mechanic.conserto.model.Conserto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +36,26 @@ public class ConsertoController {
 
     @GetMapping("algunsdados")
     public List<DadosListagemConserto> listarAlguns(){
-        return repository.findAll().stream().map(DadosListagemConserto::new).toList();
+        return repository.findAllByAtivoTrue().stream().map(DadosListagemConserto::new).toList();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Conserto> listarConsertoPorID(@PathVariable Long id) {
             Optional<Conserto> consertoOptional = repository.findById(id);
             return consertoOptional.isPresent() ? ResponseEntity.ok(consertoOptional.get()) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoConserto dados){
+        Conserto conserto = repository.getReferenceById(dados.id());
+        conserto.atualizarInformacoes(dados);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void excluir(@PathVariable Long id) {
+        Conserto conserto = repository.getReferenceById(id);
+        conserto.excluir();
     }
 }

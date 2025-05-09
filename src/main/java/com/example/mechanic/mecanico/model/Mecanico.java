@@ -1,10 +1,7 @@
 package com.example.mechanic.mecanico.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "mecanicos")
 @Entity(name = "Mecanico")
@@ -24,5 +21,10 @@ public class Mecanico {
     public Mecanico(DadosMecanico dados){
         this.nome = dados.nome();
         this.experiencia = dados.experiencia();
+    }
+
+    public void atualizarInformacoes(DadosMecanico dados) {
+        if(nome != null) this.nome = dados.nome();
+        if(experiencia != null) this.experiencia = dados.experiencia();
     }
 }

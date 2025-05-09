@@ -1,10 +1,7 @@
 package com.example.mechanic.conserto.controller;
 
-import com.example.mechanic.conserto.DadosAtualizacaoConserto;
-import com.example.mechanic.conserto.DadosConserto;
-import com.example.mechanic.conserto.DadosListagemConserto;
+import com.example.mechanic.conserto.model.*;
 import com.example.mechanic.conserto.database.ConsertoRepository;
-import com.example.mechanic.conserto.Conserto;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,37 +23,44 @@ public class ConsertoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosConserto dados){
-        repository.save(new Conserto(dados));
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosConserto dados, UriComponentsBuilder uriBuilder){
+        Conserto conserto = new Conserto(dados);
+        repository.save(conserto);
+        var uri = uriBuilder.path("/conserto/{id}").buildAndExpand(conserto.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoConserto(conserto));
     }
 
     @GetMapping
-    public Page<Conserto> listar(Pageable paginacao) {
-        return repository.findAll(paginacao);
+    public ResponseEntity listar(Pageable paginacao) {
+        return ResponseEntity.ok(repository.findAll(paginacao));
     }
 
     @GetMapping("algunsdados")
-    public List<DadosListagemConserto> listarAlguns(){
-        return repository.findAllByAtivoTrue().stream().map(DadosListagemConserto::new).toList();
+    public ResponseEntity listarAlguns(){
+        return ResponseEntity.ok(repository.findAllByAtivoTrue().stream().map(DadosListagemConserto::new).toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Conserto> listarConsertoPorID(@PathVariable Long id) {
+    public ResponseEntity listarConsertoPorID(@PathVariable Long id) {
             Optional<Conserto> consertoOptional = repository.findById(id);
-            return consertoOptional.isPresent() ? ResponseEntity.ok(consertoOptional.get()) : ResponseEntity.notFound().build();
+            return consertoOptional.isPresent() ?
+                    ResponseEntity.ok(new DadosDetalhamentoConserto(consertoOptional.get()))
+                    : ResponseEntity.notFound().build();
     }
 
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoConserto dados){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoConserto dados){
         Conserto conserto = repository.getReferenceById(dados.id());
         conserto.atualizarInformacoes(dados);
+        return ResponseEntity.ok(new DadosDetalhamentoConserto(conserto));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public void excluir(@PathVariable Long id) {
+    public ResponseEntity excluir(@PathVariable Long id) {
         Conserto conserto = repository.getReferenceById(id);
         conserto.excluir();
+        return ResponseEntity.noContent().build();
     }
 }

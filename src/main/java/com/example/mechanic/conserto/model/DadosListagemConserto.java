@@ -1,4 +1,4 @@
-package com.example.mechanic.conserto;
+package com.example.mechanic.conserto.model;
 
 public record DadosListagemConserto(
         Long id,
